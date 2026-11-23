@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "a7r3-native-ui"
+version = "0.1.0"
+description = "Clean-room native View 0xFFC UI engine, ViewMenu SettingNode router, and scene topology inspector for Sony Alpha 7R III (ILCE-7RM3, FW 3.10)"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+inspect = [
+    "capstone>=5.0",
+    "pyelftools>=0.30",
+]
+dev = [
+    "pytest>=7.0",
+]

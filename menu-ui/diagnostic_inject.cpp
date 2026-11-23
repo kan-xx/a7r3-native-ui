@@ -1,0 +1,2 @@
+#include "diagnostic.h"
+extern "C" int md_inject(const struct mp_native_api*a,uint32_t vm,uint32_t id,struct md_report*r){void*e=a->navigation.allocate(16);if(!e)return 0;bool constructed=false;try{a->event_ctor(e,id,4,0);constructed=true;r->constructed++;a->input_dispatch((void*)(uintptr_t)vm,e);a->navigation.event_dtor(e);constructed=false;r->destroyed++;a->navigation.release(e);r->events++;return 1;}catch(...){r->event_exceptions++;if(!constructed)a->navigation.release(e);return 0;}}

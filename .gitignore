@@ -1,0 +1,30 @@
+# Build & compiler outputs
+build/
+dist/
+*.egg-info/
+*.dSYM/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Strictly forbid proprietary binaries, compiled DSOs, and audio/media files
+*.so
+*.elf
+*.ko
+*.o
+*.bin
+*.BIN
+*.pcm
+*.wav
+*.WAV
+*.mp4
+*.MP4
+*.ARW
+*.JPG
+
+# OS files
+.DS_Store
