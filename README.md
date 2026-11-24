@@ -100,7 +100,7 @@ a7r3-native-ui/
 │   ├── map_reader.{c,h} / menu_maps.*  # 有界 /proc/self/maps 段映射解析器
 │   ├── page_control.{c,h} / options.*  # 6 行菜单状态机、pending 非阻塞导航与槽位 3 保护
 │   ├── audio_transaction.{c,h}         # REVOKE -> DRAIN -> REBIND 后端异步事务栅栏
-│   ├── audio_native.{c,h}              # 基于 RTLD_NOLOAD 与 SHA-256 锚点的后端松耦合绑定
+│   ├── audio_native.{c,h}              # 基于 RTLD_NOLOAD、dladdr 归属与 ABI 握手的后端松耦合绑定
 │   ├── power_lifecycle.{c,h}           # INACT / ACT 电源休眠与唤醒门控
 │   ├── product.{c,h} / diagnostic.*    # 常驻模块主入口 (liba7r_menu_product_v21.so)
 │   ├── control.c                       # 只读诊断侧车入口 (libproBC.so / commandBC10)
@@ -150,7 +150,7 @@ A7R3_FW_ROOT=/path/to/verified-3.10 make build-ui
 ```
 
 构建产物位于 `build/arm-ui/`（自动执行 `DT_RELCOUNT = 0` 修补与无 `RWX` 审计）：
-- `liba7r_menu_product_v21.so`（`70,160 B`，SHA-256 `c67529ca3cc2b15dc176af58975a0c8ec841c68a846359a5560c0eb7f4a25aac`）
+- `liba7r_menu_product_v21.so`（常驻 `View 0xFFC` 菜单模块，通过 ELF 头、`dladdr` 模块归属与 ABI 版本号松耦合绑定后端音频宿主，不锁死对端编译哈希）
 - `libproBC.so`（只读 `commandBC10` 状态查询模块）
 - `scene-current.elf`（实时视图拓扑转储器）
 

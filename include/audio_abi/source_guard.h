@@ -4,6 +4,8 @@
 #include "snapshot_abi.h"
 int a7_source_init(const uint8_t[16],uint32_t,uint32_t,const uint8_t[16],const uint8_t[24]);
 int a7_source_copy(unsigned,void*,unsigned);
+unsigned a7_source_asset_length(unsigned);
+int a7_source_asset_sha256(unsigned,uint8_t[32]);
 const uint8_t*a7_source_bytes(void);
 void a7_source_manifest(unsigned,struct a7_snapshot_manifest_v1*);
 void a7_source_status(struct ap_f4_source_meta*);

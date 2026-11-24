@@ -1,6 +1,7 @@
-/* Fixed closed whitelist. No arbitrary paths, no automatic START. */
+/* Fixed closed whitelist of backend paths, entry symbols, and ABI build tags.
+ * Verified via ARM32 ET_DYN ELF header, dladdr() module ownership, and ABI build. */
 static const struct backend_identity identities[3]={
-{"/usr/lib/liba7r_audio_borrow_v2.so","a7r_audio_borrow_v2",54244,96140,0x29120502u,{33,163,83,251,99,228,165,206,33,182,117,202,15,124,32,49,4,38,139,55,144,130,245,112,209,240,149,120,12,130,170,177},{4,0,159,229,0,0,143,224,30,255,47,225,0,83,1,0}},
-{"/usr/lib/liba7r_audio_fresh_v1.so","a7r_audio_fresh_v1",61860,104244,0x29120503u,{158,234,222,159,245,94,196,35,117,35,251,58,93,219,226,74,113,136,36,233,93,104,168,224,208,15,101,23,104,12,110,192},{4,0,159,229,0,0,143,224,30,255,47,225,216,79,1,0}},
-{"/usr/lib/liba7r_capture_fresh_v12.so","a7r_capture_fresh_v12",93468,124824,0x3110d10cu,{243,34,211,233,245,9,229,37,178,7,43,238,199,188,194,20,97,176,244,253,54,179,89,151,186,30,22,130,48,57,137,73},{4,0,159,229,0,0,143,224,30,255,47,225,132,118,1,0}},
+{"/usr/lib/liba7r_audio_borrow_v2.so","a7r_audio_borrow_v2",0x29120502u},
+{"/usr/lib/liba7r_audio_fresh_v1.so","a7r_audio_fresh_v1",0x29120503u},
+{"/usr/lib/liba7r_capture_fresh_v12.so","a7r_capture_fresh_v12",0x3110d10cu},
 };
