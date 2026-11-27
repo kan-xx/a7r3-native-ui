@@ -26,7 +26,7 @@
 
 在视图构造与渲染层，`lean_view.c` 按原厂 `View` 基类布局（基类跨度 `0x28`）在自有内存中构造完整的 27 槽主虚函数表与 RTTI 头，向 `ViewManager` 注册独立视图工厂 `A7ProductViewFactory21`（`View 0xFFC`）。进入页面时，`graphics.c` 在验证 UI 所属线程 `TID` 与保留图层快照后，向 `WidgetServer` 申请专属图层，绑定机身内置 `24pt` UTF-8 字库资源（`0x02066003`）创建 8 个原生 `Label` 控件（`0x370` 字节），执行多字节字符完整性检查以防止 UTF-8 截断；退出页面时逐项析构控件、字体与图层，并比对销毁前后的 `Layer` / `Screen` 快照确保零对象泄漏。
 
-在菜单入口与跨模块协同层，引擎只读遍历 `ViewMenu`（`0xAA`）的三级 `SettingNode` 节点树定位目标配置项（`procid == 0xa8`），通过原子 `CAS` 将目标路由名挂载为 `@VFFC`，并在菜单内部提供一键跳转回原厂对应设置页的回退入口（`stock_open.cpp`）；所有跨越 `libstdc++.so.6.0.14` 边界的调用均由独立 C++ `try/catch` 垫片包裹。页面控制器通过 `RTLD_NOLOAD` 按需发现后端音频服务（如 [`a7r3-custom-shutter`](https://github.com/kan-xx/a7r3-custom-shutter)），以 `REVOKE -> DRAIN -> REBIND` 异步事务栅栏驱动状态切换，同时向触控引擎（[`a7r3-full-touch`](https://github.com/kan-xx/a7r3-full-touch)）暴露标准化的只读几何与状态快照接口。
+在菜单入口与跨模块协同层，引擎只读遍历 `ViewMenu`（`0xAA`）的三级 `SettingNode` 节点树定位目标配置项（`procid == 0xa8`），通过原子 `CAS` 将目标路由名挂载为 `@VFFC`，并在菜单内部提供一键跳转回原厂对应设置页的回退入口（`stock_open.cpp`）；所有跨越 `libstdc++.so.6.0.14` 边界的调用均由独立 C++ `try/catch` 垫片包裹。页面控制器通过 `RTLD_NOLOAD` 按需发现后端音频服务（如 [`a7r3-custom-shutter`](https://github.com/sony-a7r3-research/a7r3-custom-shutter)），以 `REVOKE -> DRAIN -> REBIND` 异步事务栅栏驱动状态切换，同时向触控引擎（[`a7r3-full-touch`](https://github.com/sony-a7r3-research/a7r3-full-touch)）暴露标准化的只读几何与状态快照接口。
 
 ---
 
